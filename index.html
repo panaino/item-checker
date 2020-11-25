@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>風来のシレン 識別チェッカー</title>
+</head>
+<body>
+    <div class="content" id="app">
+        <div class="reset_btn">
+            <button class='btn' @click='clear'>clear</button>
+        </div>
+        <main class="table_area">
+            <div class="row_1">
+                <section style="margin-right: 10px;">
+                    <div class="col_1">
+                        <nav class="table_name">草・種</nav>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th v-for='col in grass.header'>{{ col }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for='item in grass.itemList'>
+                                    <td class="checkbox"><input type="checkbox" :value='item.name' v-model='checked_items'></td>
+                                    <td class='name'>{{ item.name }}</td>
+                                    <td class='buy' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.buy }}</td>
+                                    <td class='sell' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.sell }}</td>
+                                    <td class='swordMark'>{{ item.swordMark }}</td>
+                                    <td class='shieldMark'>{{ item.shieldMark }}</td>
+                                    <td class="description">{{ item.description }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                <section>
+                    <div class="col_2">
+                        <nav class="table_name">巻物</nav>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th v-for='col in paper.header'>{{ col }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for='item in paper.items'>
+                                    <td><input type="checkbox" :value='item.name' v-model='checked_items'></td>
+                                    <td class='name'>{{ item.name }}</td>
+                                    <td class='buy' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.buy }}</td>
+                                    <td class='sell' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.sell }}</td>
+                                    <td class="description">{{ item.description }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col_3">
+                        <nav class="table_name">腕輪</nav>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th v-for='col in bracelet.header'>{{ col }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for='item in bracelet.itemList'>
+                                    <td class="checkbox"><input type="checkbox" :value='item.name' v-model='checked_items'></td>
+                                    <td class="name">{{ item.name }}</td>
+                                    <td class='buy' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.buy }}</td>
+                                    <td class='sell' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.sell }}</td>
+                                    <td class="duplication">{{ item.duplication }}</td>
+                                    <td class="description">{{ item.description }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+            <div class="row_2">
+                <section>
+                    <div class="col_4">
+                        <nav class="table_name">杖</nav>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th v-for='col in staff.header'>{{ col }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for='item in staff.itemList'>
+                                    <td class="checkbox"><input type="checkbox" :value='item.name' v-model='checked_items'></td>
+                                    <td class="name">{{ item.name }}</td>
+                                    <td class='buy' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.buy }}</td>
+                                    <td class='buy_inc' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.buy_inc }}</td>
+                                    <td class='sell' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.sell }}</td>
+                                    <td class='sell_inc' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.sell_inc }}</td>
+                                    <td>{{ item.sign }}</td>
+                                    <td>{{ item.description }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col_5">
+                        <nav class="table_name">壺</nav>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th rowspan="2"></th>
+                                    <th rowspan="2">名前</th>
+                                    <th rowspan="2">初期容量</th>
+                                    <th colspan="2">買値</th>
+                                    <th colspan="2">売値</th>
+                                    <th rowspan="2">説明</th>
+                                </tr>
+                                <tr>
+                                    <th>基本</th>
+                                    <th>+１</th>
+                                    <th>基本</th>
+                                    <th>+１</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for='item in pot.itemList'>
+                                    <td class="checkbox"><input type="checkbox" :value='item.name' v-model='checked_items'></td>
+                                    <td class="name" style="width: 75px">{{ item.name }}</td>
+                                    <td class='buy' v-if='item.capacity.rowspan > 0' :rowspan="item.capacity.rowspan">{{ item.capacity.value }}</td>
+                                    <td class='buy' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.buy.base }}</td>
+                                    <td class='buy_inc' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.buy.inc }}</td>
+                                    <td class='sell' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.sell.base }}</td>
+                                    <td class='sell_inc' v-if='item.rowspan > 0' :rowspan="item.rowspan">{{ item.sell.inc }}</td>
+                                    <td style="width: 600px;">{{ item.description }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>

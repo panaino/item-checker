@@ -1,0 +1,95 @@
+html {
+  font-family:
+    'Source Sans Pro',
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif;
+    word-spacing: 1px;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    box-sizing: border-box;
+    font-size: xx-small;
+}
+
+.content {
+    margin-bottom: 100px;
+    width: 1400px;
+    display: flex;
+}
+
+.table_name {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.row_1 {
+    display: flex;
+}
+
+/* テーブルに関するデザイン */
+table {
+border-collapse: collapse;
+}
+
+table th {
+    /* 縦スクロール時に固定する */
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    /* tbody内のセルより手前に表示する */
+    z-index: 1;
+    background-color: rgb(185, 223, 130);
+}
+
+table th, table td {
+    border: 1px solid black;
+}
+
+.name, .buy, .buy_inc, .sell_inc, .sell, .swordMark, .shieldMark, .duplication {
+    text-align: center;
+}
+
+.checkbox {
+    width: 20px;
+}
+
+.name {
+    width: 80px;
+}
+
+.buy, .sell{
+    width: 40px;
+}
+
+.swordMark, .shieldMark {
+    width: 65px;
+}
+
+.description {
+    width: 330px;
+}
+
+/* ボタンエリアに関すデザイン */
+.reset_btn {
+    margin-right: 10px;
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    top: 10px;
+}
+
+.btn {
+    position: sticky;
+    top: 50%;
+    height: 5em;
+    width: 5em;
+    border-radius: 40px;
+    font-size: xx-small;
+    outline: none;
+}
